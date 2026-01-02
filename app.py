@@ -250,7 +250,6 @@ def predict():
 
 # ========== 6. 启动应用 ==========
 if __name__ == '__main__':
-    # 在魔搭Notebook中，host需设为'0.0.0.0'以允许外部访问，端口可自定义
-    # debug=True 便于开发时查看错误，正式运行时可以设为False
-    print("启动Flask应用...访问 http://<你的Notebook地址>:5000")
-    app.run(debug=False, host='0.0.0.0', port=5000)
+    # 获取环境变量中的端口（Render会自动设置）
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
